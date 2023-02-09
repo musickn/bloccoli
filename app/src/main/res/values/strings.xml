@@ -1,0 +1,19 @@
+<resources>
+  <string name="app_name">Broccoli &amp; Co.</string>
+  <string name="request_invite">Request Invite</string>
+  <string name="request_invite_message">Enter your name and email to receive email invitations to the service.</string>
+  <string name="full_name">Full Name</string>
+  <string name="email">Email</string>
+  <string name="confirm_email">Confirm Email</string>
+  <string name="send">Send</string>
+  <string name="cancel_invite">Cancel Invite</string>
+  <string name="cancel">Cancel</string>
+  <string name="invite_request_sent">Invite request sent</string>
+  <string name="congratulations">Congratulations!</string>
+  <string name="invite_cancelled">Invite cancelled</string>
+  <string name="minimum_characters">Full name should have at least 3 characters</string>
+  <string name="email_mismatch">Email and Confirm Email do not match</string>
+  <string name="invalid_email">Invalid email format</string>
+  <string name="already_registered">You are already registered</string>
+  <string name="already_invited">You have already requested an invitation</string>
+</resources>
