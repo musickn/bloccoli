@@ -1,6 +1,7 @@
 <resources>
   <string name="app_name">Broccoli &amp; Co.</string>
-  <string name="request_invite">Request Invite</string>
+  <string name="request_invite_subtitle">Request Beta Access Invitation</string>
+  <string name="request_invite">Request</string>
   <string name="request_invite_message">Enter your name and email to receive email invitations to the service.</string>
   <string name="full_name">Full Name</string>
   <string name="email">Email</string>
