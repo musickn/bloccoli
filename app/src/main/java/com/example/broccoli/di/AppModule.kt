@@ -2,6 +2,7 @@ package com.example.broccoli.di
 
 import com.example.broccoli.data.datasource.APIs
 import com.example.broccoli.util.Constants
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,7 +25,7 @@ object AppModule {
         return Retrofit.Builder()
             .client(okHttpClient)
             .baseUrl(Constants.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create()).build()
+            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create())).build()
     }
 
     @Singleton

@@ -78,7 +78,6 @@ class MainActivity : AppCompatActivity() {
             }
 
             if (isValid) {
-                // call api
                 viewModel.requestInvitation(fullName, email)
 
                 // Show a "congratulations" message
