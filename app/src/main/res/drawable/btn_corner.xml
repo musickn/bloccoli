@@ -3,5 +3,4 @@
   android:padding="10dp"
   android:shape="rectangle">
   <corners android:radius="10dp" />
-  <solid android:color="@color/broccoli_btn" />
 </shape>

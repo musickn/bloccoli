@@ -1,6 +1,7 @@
 package com.example.broccoli.ui
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Patterns
 import androidx.appcompat.app.AlertDialog
@@ -15,43 +16,45 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var dialogBinding: RequestInviteDialogBinding
-//    private val preferencesFileName = "userPrefs"
-//    private val preferences = getSharedPreferences(preferencesFileName, Context.MODE_PRIVATE)
+    private val preferencesFileName = "userPrefs"
+    private lateinit var preferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         dialogBinding = RequestInviteDialogBinding.inflate(layoutInflater)
+        preferences = this.getSharedPreferences(preferencesFileName, Context.MODE_PRIVATE)
         setContentView(binding.root)
 
-        // Check if the user has already requested an invitation
-//        if (preferences.getBoolean("invited", false)) {
-//            displayInvitedScreen()
-//        } else {
+//      Check if the user has already requested an invitation
+        if (preferences.getBoolean("invited", false)) {
+            displayInvitedScreen()
+        } else {
             displayRequestScreen()
-//        }
+        }
     }
-    private fun displayRequestScreen() {
-//        text_header.text = getString(R.string.request_invite_header)
-//        text_body.text = getString(R.string.request_invite_body)
-//        button_request_invite.text = getString(R.string.request_invite_button)
 
-        binding.btnRequestInvite.setOnClickListener { showRequestInviteDialog() }
+    private fun displayRequestScreen() {
+        binding.txtSubtitle.text = getString(R.string.request_invite_subtitle)
+        with(binding.btnRequestInvite) {
+            text = getString(R.string.request_invite)
+            setOnClickListener { showRequestInviteDialog() }
+        }
     }
+
     private fun displayInvitedScreen() {
-//        text_header.text = getString(R.string.already_registered_header)
-//        text_body.text = getString(R.string.already_registered_body)
-//        button_request_invite.text = getString(R.string.cancel_invite_button)
-//
-//        button_request_invite.setOnClickListener {
-//            showCancelInviteDialog()
-//        }
+        binding.txtSubtitle.text = getString(R.string.already_invited)
+        with(binding.btnRequestInvite) {
+            text = getString(R.string.cancel_invite)
+            setOnClickListener { showCancelInviteDialog() }
+        }
     }
 
     private fun showRequestInviteDialog() {
+        dialogBinding = RequestInviteDialogBinding.inflate(layoutInflater)
+
         val dialog = AlertDialog.Builder(this)
             .setView(dialogBinding.root)
-            .setCancelable(false)
             .create()
 
         dialogBinding.btnSend.setOnClickListener {
@@ -61,15 +64,15 @@ class MainActivity : AppCompatActivity() {
 
             var isValid = true
             if (fullName.length < 3) {
-                dialogBinding.fullName.error = getString(R.string.minimum_characters)
+                dialogBinding.fullName.error = getString(R.string.error_minimum_characters)
                 isValid = false
             }
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                dialogBinding.email.error = getString(R.string.invalid_email)
+                dialogBinding.email.error = getString(R.string.error_invalid_email)
                 isValid = false
             }
             if (email != confirmEmail) {
-                dialogBinding.confirmEmail.error = getString(R.string.email_mismatch)
+                dialogBinding.confirmEmail.error = getString(R.string.error_email_mismatch)
                 isValid = false
             }
 
@@ -83,6 +86,25 @@ class MainActivity : AppCompatActivity() {
                 dialog.dismiss()
             }
         }
+        dialog.show()
+    }
+
+    private fun showCancelInviteDialog() {
+        val dialog = AlertDialog.Builder(this)
+            .setTitle(R.string.cancel_invite)
+            .setMessage(R.string.cancel_invite_confirm)
+            .setPositiveButton(R.string.confirm) { _, _ ->
+                // Clear shared preferences when user confirms
+                preferences.edit().clear().apply()
+
+                binding.txtSubtitle.text = getString(R.string.request_invite_subtitle)
+                with(binding.btnRequestInvite) {
+                    text = getString(R.string.request_invite)
+                    setOnClickListener { showRequestInviteDialog() }
+                }
+            }
+            .setNegativeButton(R.string.cancel) { _, _ -> }
+            .create()
         dialog.show()
     }
 }

@@ -1,20 +1,27 @@
 <resources>
+  <string name="confirm">Confirm</string>
+  <string name="cancel">Cancel</string>
+  <!-- Request Invitation Screen -->
   <string name="app_name">Broccoli &amp; Co.</string>
   <string name="request_invite_subtitle">Request Beta Access Invitation</string>
   <string name="request_invite">Request</string>
-  <string name="request_invite_message">Enter your name and email to receive email invitations to the service.</string>
+
+  <!-- Request Invitation Dialog -->
+  <string name="request_invite_dialog_subtitle">Enter your name and email to receive email invitations to the service.</string>
   <string name="full_name">Full Name</string>
   <string name="email">Email</string>
   <string name="confirm_email">Confirm Email</string>
   <string name="send">Send</string>
-  <string name="cancel_invite">Cancel Invite</string>
-  <string name="cancel">Cancel</string>
-  <string name="invite_request_sent">Invite request sent</string>
+  <string name="error_minimum_characters">Full name should have at least 3 characters</string>
+  <string name="error_email_mismatch">Email and Confirm Email do not match</string>
+  <string name="error_invalid_email">Invalid email format</string>
+
+  <!-- Invited Screen -->
+  <string name="already_invited">You have already requested an invitation</string>
+  <string name="cancel_invite">Cancel Request</string>
+
+  <!-- Cancel Invitation Dialog -->
+  <string name="cancel_invite_confirm">Are you sure to cancel the request</string>
   <string name="congratulations">Congratulations!</string>
   <string name="invite_cancelled">Invite cancelled</string>
-  <string name="minimum_characters">Full name should have at least 3 characters</string>
-  <string name="email_mismatch">Email and Confirm Email do not match</string>
-  <string name="invalid_email">Invalid email format</string>
-  <string name="already_registered">You are already registered</string>
-  <string name="already_invited">You have already requested an invitation</string>
 </resources>
