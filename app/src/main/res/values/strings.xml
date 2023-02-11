@@ -24,4 +24,7 @@
   <string name="cancel_invite_confirm">Are you sure to cancel the request</string>
   <string name="congratulations">Congratulations!</string>
   <string name="invite_cancelled">Invite cancelled</string>
+
+  <!-- Error message -->
+  <string name="error_unexpected_response">Something went wrong, please try again later</string>
 </resources>

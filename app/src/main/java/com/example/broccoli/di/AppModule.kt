@@ -1,5 +1,6 @@
 package com.example.broccoli.di
 
+import com.example.broccoli.data.datasource.APIs
 import com.example.broccoli.util.Constants
 import dagger.Module
 import dagger.Provides
@@ -56,14 +57,5 @@ object AppModule {
     @Provides
     fun provideApiServices(retrofitClient: Retrofit): APIs {
         return retrofitClient.create(APIs::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideVideoRepository(
-        api: APIs
-    ): TmdbRepository {
-        val remoteDataSourceImpl = RemoteDataSourceImpl(api)
-        return TmdbRepository(remoteDataSourceImpl)
     }
 }

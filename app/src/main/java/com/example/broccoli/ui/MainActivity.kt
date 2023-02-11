@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Patterns
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.broccoli.R
@@ -16,14 +17,14 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var dialogBinding: RequestInviteDialogBinding
-    private val preferencesFileName = "userPrefs"
     private lateinit var preferences: SharedPreferences
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         dialogBinding = RequestInviteDialogBinding.inflate(layoutInflater)
-        preferences = this.getSharedPreferences(preferencesFileName, Context.MODE_PRIVATE)
+        preferences = this.getSharedPreferences("userPrefs", Context.MODE_PRIVATE)
         setContentView(binding.root)
 
 //      Check if the user has already requested an invitation
@@ -77,8 +78,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             if (isValid) {
-                // Send the request invite
-                // ...
+                // call api
+                viewModel.requestInvitation(fullName, email)
 
                 // Show a "congratulations" message
                 // ...
